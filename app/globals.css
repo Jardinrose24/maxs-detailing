@@ -5,50 +5,69 @@
 
 /* Max's Mobile Detailing - Modern Light Theme */
 :root {
-  /* Light base - White #FFFFFF */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  /* Card - White with soft shadows */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  /* Base - Light background and dark text */
+  --background: oklch(0.98 0 0); /* Very light off-white */
+  --foreground: oklch(0.15 0 0); /* Dark text for readability */
+
+  /* Card - Slightly off-white with subtle shadow */
+  --card: oklch(0.995 0 0);
+  --card-foreground: oklch(0.15 0 0);
+
+  /* Popover / Modals */
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  /* Primary - Bright Cyan #00CFFF */
-  --primary: oklch(0.78 0.15 200);
-  --primary-foreground: oklch(1 0 0);
-  /* Secondary - Light gray #F7F7F7 */
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.145 0 0);
-  /* Muted - for sections and subtle backgrounds */
+  --popover-foreground: oklch(0.15 0 0);
+
+  /* Primary neon for buttons/links */
+  --primary: oklch(0.78 0.15 200); /* Cyan neon */
+  --primary-foreground: oklch(1 0 0); /* White text */
+
+  /* Secondary / subtle accents */
+  --secondary: oklch(0.95 0 0); /* Light gray */
+  --secondary-foreground: oklch(0.15 0 0);
+
+  /* Muted backgrounds for sections */
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.45 0 0);
-  /* Accent - Purple #8B5CF6 */
-  --accent: oklch(0.62 0.24 290);
+
+  /* Accent neon purple for highlights */
+  --accent: oklch(0.62 0.24 290); /* Purple neon */
   --accent-foreground: oklch(1 0 0);
+
+  /* Destructive (error) colors */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
+
+  /* Borders and inputs */
   --border: oklch(0.9 0 0);
   --input: oklch(0.97 0 0);
-  --ring: oklch(0.78 0.15 200);
-  --chart-1: oklch(0.78 0.15 200);
-  --chart-2: oklch(0.62 0.24 290);
-  --chart-3: oklch(0.7 0.15 150);
-  --chart-4: oklch(0.75 0.12 60);
-  --chart-5: oklch(0.65 0.2 340);
+  --ring: var(--primary);
+
+  /* Charts (if used) */
+  --chart-1: var(--primary);
+  --chart-2: var(--accent);
+  --chart-3: oklch(0.7 0.15 150); /* Greenish */
+  --chart-4: oklch(0.75 0.12 60);  /* Yellowish */
+  --chart-5: oklch(0.65 0.2 340);  /* Pinkish */
+
+  /* Radius for cards/buttons */
   --radius: 0.75rem;
+
+  /* Sidebar (if any) */
   --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.78 0.15 200);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.78 0 200);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+
+  /* Map root colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -68,15 +87,12 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -92,27 +108,47 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   html {
     scroll-behavior: smooth;
   }
+
+  /* Make headings bold and blocky for readability */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Links/buttons */
+  a, button {
+    @apply transition-colors duration-300;
+  }
 }
 
-/* Neon glow effects */
+/* Neon glow for buttons or highlights */
 .neon-glow {
-  box-shadow: 0 0 20px oklch(0.78 0.15 200 / 0.4), 0 0 40px oklch(0.78 0.15 200 / 0.2);
+  box-shadow: 0 0 15px var(--primary / 0.4), 0 0 30px var(--primary / 0.2);
 }
 
 .neon-glow-purple {
-  box-shadow: 0 0 20px oklch(0.62 0.24 290 / 0.4), 0 0 40px oklch(0.62 0.24 290 / 0.2);
+  box-shadow: 0 0 15px var(--accent / 0.4), 0 0 30px var(--accent / 0.2);
 }
 
 .neon-text {
-  text-shadow: 0 0 10px oklch(0.78 0.15 200 / 0.6), 0 0 20px oklch(0.78 0.15 200 / 0.4);
+  text-shadow: 0 0 8px var(--primary / 0.6), 0 0 16px var(--primary / 0.4);
 }
 
 .neon-border {
-  border-color: oklch(0.78 0.15 200);
-  box-shadow: 0 0 10px oklch(0.78 0.15 200 / 0.3), inset 0 0 10px oklch(0.78 0.15 200 / 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 8px var(--primary / 0.3), inset 0 0 8px var(--primary / 0.1);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem;
 }
