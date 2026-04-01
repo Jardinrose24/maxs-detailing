@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
 
     if (!privateKey) {
       // Log the booking to console for development/fallback
+      console.log("Private key length:", privateKey?.length)
       console.log("[v0] New booking received (Google Sheets private key not configured):", {
         timestamp: new Date().toISOString(),
         name,
