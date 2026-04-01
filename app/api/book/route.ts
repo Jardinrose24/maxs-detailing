@@ -18,12 +18,11 @@ export async function POST(request: NextRequest) {
     // Google Sheets credentials
     // Service account: maxdetailing@detailing-booking.iam.gserviceaccount.com
     // Sheet ID: 1XDMeLty0xKzpv-26AdlUi4av-IciCrPqCrk1Stt7_-8
-    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL || "maxdetailing@detailing-booking.iam.gserviceaccount.com"
+    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL!
     
-    // Replace literal "\n" in your env variable with actual newlines
     const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n")
     
-    const sheetId = process.env.GOOGLE_SHEET_ID || "1XDMeLty0xKzpv-26AdlUi4av-IciCrPqCrk1Stt7_-8"
+    const sheetId = process.env.GOOGLE_SHEET_ID!
 
     if (!privateKey) {
       // Log the booking to console for development/fallback
